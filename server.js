@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const formidable = require('express-formidable');
+const fs = require('fs');
 
 const app = express();
 
@@ -13,6 +15,15 @@ app.get('/assets/js/dropzone.js', function(req,res) {
 
 app.get('/assets/css/dropzone.css', function(req,res) {
   res.sendFile(path.join(__dirname, '/assets/css/dropzone.css'));
+});
+
+app.use(formidable());
+
+app.post('/uploads', function(req, res) {
+  var savePath = path.join(__dirname, '/uploads/', req.files.file.name)
+  fs.rename(req.files.file.path, savePath, function (err) {
+    res.redirect("back");
+  });
 });
 
 app.listen(3000, function() {
