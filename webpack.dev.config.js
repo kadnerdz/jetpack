@@ -58,10 +58,6 @@ module.exports = {
 
     plugins: [
 	new ExtractTextPlugin('[name].[chunkhash].css'),
-	new ManifestRevisionPlugin(path.join(root, 'manifest.json'), {
-	    rootAssetPath: '/static/',
-	    ignorePaths: ['css', 'js', 'img']
-	}),
 	new webpack.NoErrorsPlugin()
     ],
 

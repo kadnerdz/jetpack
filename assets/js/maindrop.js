@@ -1,4 +1,4 @@
-Dropzone.options.mainDrop = {
+module.exports = {
 	paramName: "file",
 	maxFilesize: 2,
 	acceptedFiles: ".gif",
