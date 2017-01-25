@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-formidable": "^1.0.0"
+  }
+}
