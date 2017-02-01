@@ -17,7 +17,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: outputPath,
-    publicPath: publicPath
+    publicPath: '/public/js'
   },
 
   resolve: {

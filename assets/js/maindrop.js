@@ -3,7 +3,8 @@ import Dropzone from 'react-dropzone'
 
 export default class MainDrop extends React.Component {
   onDrop(acceptedFiles, rejectedFiles) {
-    console.log(acceptedFiles, rejectedFiles)
+    console.log("accepted: ", acceptedFiles,
+		"rejected: ", rejectedFiles)
   }
 
   render() {

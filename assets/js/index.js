@@ -1,4 +1,8 @@
-const Dropzone = require('dropzone')
-const dropzoneProps = require('./maindrop')
+import React from 'react'
+import { render } from 'react-dom'
+import MainDrop from './maindrop'
 
-Dropzone.options.app = dropzoneProps
+render(
+  <MainDrop />,
+  document.getElementById('app')
+)

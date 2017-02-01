@@ -46,13 +46,29 @@ if (isDeveloping) {
   })
 
   app.use(middleware)
-  app.use(webpackHotMiddleware(compiler))  
+  app.use(webpackHotMiddleware(compiler))
+
+  
+  app.get('/public/:asset/:filename', (req, res) => {
+    console.log(req.path, req.route)
+    //const file_name = path.join(config.output.path, '..', 
+    // const file = middleware.fileSystem.readFileSync(
+      
+    // )
+    // res.send(file)
+    // res.end()
+  })
+  
   app.get('*', (req, res) => {
-    res.write(middleware.fileSystem.readFileSync(
-      path.join(config.output.publicPath, 'index.html')
-    )).on('error', console.log)
+    const index_path = path.join(config.output.path, '..', 'index.html')
+    const index_file = middleware.fileSystem.readFileSync(
+      index_path
+    )
+    res.set('Content-Type', 'text/html')
+    res.send(index_file)
     res.end()
   })
+  
 }
 else {
   console.log("running prod server")  
