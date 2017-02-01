@@ -1,3 +1,4 @@
-const dropzone = require('dropzone')
+const Dropzone = require('dropzone')
+const dropzoneProps = require('./maindrop')
 
-const dzDiv = document.getElementById('app')
+Dropzone.options.app = dropzoneProps

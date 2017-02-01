@@ -1,4 +1,7 @@
-const { Dropzone } = require('dropzone')
+import React from 'react'
+import MainDrop from './js/maindrop'
 
-Dropzone.options.mainDrop = require('./maindrop')
-
+React.render(
+  <MainDrop />,
+  document.getElementById('app')
+)

@@ -8,7 +8,7 @@ const app = express();
 /* Basic roues */
 app.use(formidable());
 
-app.post('/uploads', function(req, res) {
+app.post('/api/v1/uploads', function(req, res) {
   var savePath = path.join(__dirname, '/uploads/', req.files.file.name)
   fs.createReadStream(req.files.file.path).pipe(fs.createWriteStream(savePath))
     .on('error', e => res.status(500).send(e.message))
@@ -46,20 +46,17 @@ if (isDeveloping) {
   })
 
   app.use(middleware)
-  app.use(webpackHotMiddleware(compiler))
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(config.output.publicPath, 'index.html'));
+  app.use(webpackHotMiddleware(compiler))  
+  app.get('*', (req, res) => {
+    res.write(middleware.fileSystem.readFileSync(
+      path.join(config.output.publicPath, 'index.html')
+    )).on('error', console.log)
+    res.end()
   })
 }
 else {
-  console.log("running prod server")
-  
-  const config = require('./webpack.prod.config.js')
-  app.use(express.static(config.output.publicPath))
-  
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(config.output.publicPath, 'index.html'));
-  })
+  console.log("running prod server")  
+  app.use(express.static(path.join(__dirname, 'public')))
 }
 
 /* listen */
